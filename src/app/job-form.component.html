@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>Tiling Job</h1>
+    <form (ngSubmit)="onSubmit()" #jobForm="ngForm">
+      <div class="form-group">
+        <label for="layer_id">Layer Id</label>
+        <input type="text" class="form-control" id="layer_id" required  [(ngModel)]="model.layer_id" name="layer_id" #spy>
+      </div>     
+        
+      <div class="form-group">
+        <label for="res_low">Lowest Resolution</label>
+        <input type="text" class="form-control" id="res_low" required [(ngModel)]="model.res_low" name="res_low">
+      </div>
+
+      <div class="form-group">
+        <label for="res_high">High Resolution</label>
+        <input type="text" class="form-control" id="res_high" required [(ngModel)]="model.res_high" name="res_high">
+      </div>
+        
+      <div class="form-group">
+        <label for="s3_endpoint">S3 Endpoint</label>
+        <select class="form-control" id="s3_endpoint" required [(ngModel)]="model.s3_endpoint" name="s3_endpoint">
+             <option *ngFor="let s3_point of s3_endpoints" [value]="s3_point">{{s3_point}}</option>
+        </select>      
+      </div>
+          
+      <div class="form-group">
+        <label for="srid">SRID</label>
+        <input type="text" class="form-control" id="srid" [(ngModel)]="model.srid" name="srid">
+      </div>
+        
+      <div class="form-group">
+        <label for="bbox_minx">Bounding Box</label>
+        <input type="text" class="form-control" id="bbox_minx" [(ngModel)]="model.bbox_minx" name="bbox_minx">
+        <input type="text" class="form-control" id="bbox_miny" [(ngModel)]="model.bbox_miny" name="bbox_miny">
+        <input type="text" class="form-control" id="bbox_maxx" [(ngModel)]="model.bbox_maxx" name="bbox_maxx">
+        <input type="text" class="form-control" id="bbox_maxy" [(ngModel)]="model.bbox_maxy" name="bbox_maxy">
+      </div>
+
+      <div class="form-group">
+        <label for="mail">E-Mail</label>
+        <input type="text" class="form-control" id="mail" [(ngModel)]="model.mail" name="mail">
+      </div>
+      <!-- <iframe src="https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857.jpeg"></iframe> -->
+      <div id="map" class="map"></div>
+      <input type="submit" id="submit" value="Submit" /> 
+    </form>
+</div>
+<script src="//api3.geo.admin.ch/loader.js"></script>
+
