@@ -1,14 +1,12 @@
 from flask import Flask
-#from redis import Redis, RedisError
 import os
-import socket
 from flask import request
 import json
-
-# Connect to Redis
-#redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route('/update', methods=['GET', 'POST'])
 def getForm():
@@ -17,7 +15,7 @@ def getForm():
     print ("Launch the tiling job for "+ form_dict.get("layer_id"))
     
     
-    return ""
+    return "success"
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=4201)
