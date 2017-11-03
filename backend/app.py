@@ -15,7 +15,7 @@ def getForm():
     print ("Launch the tiling job for "+ form_dict.get("layer_id"))
     
     
-    return "success"
+    return data
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=4201)
+    app.run(host='127.0.0.1', port=8000)

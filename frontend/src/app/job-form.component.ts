@@ -13,7 +13,7 @@ export class JobFormComponent{
   srids = [21781, 2056];
   s3_endpoints = ['dev', 'int', 'prod'];
   data: string;
-  url = 'http://192.168.99.100:4201/update'
+  url = 'http://127.0.0.1:8000/update';
 
   model = new Job(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
 
@@ -22,6 +22,7 @@ export class JobFormComponent{
   onSubmit() { 
     this.submitted = true; 
     this.data = JSON.stringify(this.model);
+    
     this.http.post(this.url, this.data, { responseType: 'json' }).subscribe(
       data=> {console.log("The subscription is complete.")},
       function(error) { console.log("Error happened" + error)}); 
