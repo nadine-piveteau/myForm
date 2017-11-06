@@ -5,7 +5,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 
 
 @app.route('/update', methods=['GET', 'POST'])
@@ -17,5 +17,10 @@ def getForm():
     
     return data
 
+@app.route('/get', methods=['GET'])
+def getStatus():
+    return "Sucess"
+
+
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8000)
+    app.run(host='0.0.0.0', port=8000)

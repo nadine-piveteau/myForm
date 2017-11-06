@@ -13,7 +13,7 @@ export class JobFormComponent{
   srids = [21781, 2056];
   s3_endpoints = ['dev', 'int', 'prod'];
   data: string;
-  url = 'http://127.0.0.1:8000/update';
+  url = 'http://192.168.99.100:8000/update';
 
   model = new Job(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
 
