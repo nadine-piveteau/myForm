@@ -1,12 +1,12 @@
-FROM node:7 
+FROM alpine:3.6
 
 # Copy the current directory contents into the container at /app
 ADD . /myForm/frontend
 WORKDIR /myForm/frontend
-COPY package.json /myform/frontend
 
 # Install any needed packages specified in requirements.txt
-RUN npm install 
+RUN apk add --update py-pip  nodejs nodejs-npm
+RUN npm install -g @angular/cli
 
 
 
@@ -14,5 +14,6 @@ RUN npm install
 EXPOSE 4200
 
 # Run app.py when the container launches
-CMD ["npm", "start" ]
+ENTRYPOINT ["ng"]
+CMD ["serve", "-H", "0.0.0.0" ]
 
