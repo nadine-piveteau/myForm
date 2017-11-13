@@ -8,7 +8,7 @@ app = Flask(__name__)
 #CORS(app)
 
 
-@app.route('/update', methods=['GET', 'POST'])
+@app.route('/run_post', methods=['GET', 'POST'])
 def getForm():
     data = request.data.decode('utf-8')
     form_dict = json.loads(data)

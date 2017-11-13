@@ -11,11 +11,11 @@ export class JobFormComponent{
   constructor(private http: HttpClient) {}
 
   srids = [21781, 2056];
-  s3_endpoints = ['dev', 'int', 'prod'];
+  extensions = ['png', 'jpeg']
   data: string;
-  url = 'http://127.0.0.1:8000/update';
+  url = 'http://127.0.0.1:8000/run_post';
 
-  model = new Job(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+  model = new Job(undefined, 4000.0, 250.0, undefined, undefined, 2056,2420000.0, 1030000.0, 2900000.0, 1350000.0);
 
   submitted = false;
 
@@ -34,7 +34,7 @@ export class JobFormComponent{
   get diagnostic() { return JSON.stringify(this.model); }
 
   newJob() {
-    this.model = new Job('layer', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 'your.e-mail@swisstopo.ch');
+    this.model = new Job(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
   }
 
 }
