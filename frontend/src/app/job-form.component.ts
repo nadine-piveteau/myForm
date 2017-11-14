@@ -19,6 +19,9 @@ export class JobFormComponent{
 
   submitted = false;
 
+
+  headers = new Headers();
+
   onSubmit() { 
     this.submitted = true; 
     this.dict['layer_id'] = this.model.layer_id; 
@@ -30,8 +33,10 @@ export class JobFormComponent{
     this.dict['bbox'] = [this.model.bbox_minx, this.model.bbox_maxx, this.model.bbox_miny, this.model.bbox_maxy];
     console.log(this.dict); 
     this.data = JSON.stringify(this.dict);
-    
-    this.http.post(this.url, this.data, { responseType: 'json'}).subscribe(
+
+
+    this.headers.append('Content-Type', 'application/json');
+    this.http.post(this.url, this.data, this.headers).subscribe(
       data=> {console.log("The subscription is complete.")},
       function(error) { console.log("Error happened" + error)}); 
     console.log(this.data);   

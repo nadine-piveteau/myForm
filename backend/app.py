@@ -5,7 +5,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
-#CORS(app)
+CORS(app)
 
 
 @app.route('/run_post', methods=['GET', 'POST'])
@@ -13,7 +13,7 @@ def getForm():
     data = request.data.decode('utf-8')
     form_dict = json.loads(data)
     print ("Launch the tiling job for "+ form_dict.get("layer_id"))
-    
+    print (form_dict.get("bbox")) 
     
     return data
 
