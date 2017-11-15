@@ -5,6 +5,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
+# Only necessary when running locally, right?
 CORS(app)
 
 
