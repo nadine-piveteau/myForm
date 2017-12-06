@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -H 0.0.0.0",
+    "start": "node ./replace.build.js ${PORTBACKEND} && ng serve -H 0.0.0.0 --port ${PORTFRONTEND}",
+    "updateBuild": "node ./replace.build.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -43,6 +44,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
+    "replace-in-file": "^3.0.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3"

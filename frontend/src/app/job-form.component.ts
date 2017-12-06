@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Job }    from './job';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'job-form',
@@ -13,9 +14,10 @@ export class JobFormComponent{
   srids = [21781, 2056];
   extensions = ['png', 'jpeg'];
   data: string;
-  url = 'http://127.0.0.1:9000/run_post';
-  dict = {}
-  model = new Job(undefined, 4000.0, 250.0, undefined, undefined, 2056,2420000.0, 1030000.0, 2900000.0, 1350000.0);
+  port = environment.portBackend;
+  url = 'http://127.0.0.1:' + this.port + '/run_post';
+  dict = {};
+  model = new Job(this.url, 4000.0, 250.0, undefined, undefined, 2056,2420000.0, 1030000.0, 2900000.0, 1350000.0);
 
   submitted = false;
 

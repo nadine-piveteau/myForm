@@ -3,6 +3,8 @@ import os
 from flask import request
 import json
 from flask_cors import CORS
+import sys
+
 
 app = Flask(__name__)
 # Only necessary when running locally, right?
@@ -14,7 +16,7 @@ def getForm():
     data = request.data.decode('utf-8')
     form_dict = json.loads(data)
     print ("Launch the tiling job for "+ form_dict.get("layer_id"))
-    print (form_dict.get("bbox")) 
+    print (form_dict) 
     
     return data
 
@@ -24,4 +26,5 @@ def getStatus():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000)
+    port = sys.argv[1]
+    app.run(host='0.0.0.0', port=port)

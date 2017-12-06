@@ -8,8 +8,9 @@ WORKDIR /myForm/backend
 RUN apk add --update py-pip python 
 RUN pip install -r requirements.txt
 
-# Make port 4201 available to the world outside this container
-EXPOSE  8000 
+# Make port available to the world outside this container
+# Make sure you sourced myForm/rc_user
+EXPOSE  ${PORTBACKEND} 
 
 # Run app.py when the container launches
-CMD python app.py
+CMD python app.py ${PORTBACKEND}
