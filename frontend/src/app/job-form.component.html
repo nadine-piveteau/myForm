@@ -3,49 +3,91 @@
     <form (ngSubmit)="onSubmit()" #jobForm="ngForm">
       <div class="form-group">
         <label for="layer_id">Layer Id</label>
-        <input type="text" class="form-control" id="layer_id" required  [(ngModel)]="model.layer_id" name="layer_id" #spy>
-      </div>     
-        
+        <input type="text" class="form-control" id="layer_id" required pattern="ch[.].*" [(ngModel)]="model.layer_id" name="layer_id" #layer_id="ngModel">
+        <div *ngIf="layer_id.invalid && (layer_id.dirty || layer_id.touched)" class="alert alert-danger">
+          <div *ngIf="layer_id.errors.required">Name is required.</div>
+          <div *ngIf="layer_id.errors.pattern"> The layer ID starts with 'ch.'.</div>
+        </div>
+      </div>
+
       <div class="form-group">
-        <label for="res_low">Lowest Resolution</label>
-        <input type="text" class="form-control" id="res_low" required [(ngModel)]="model.res_low" name="res_low">
+        <label for="res_low">Low Resolution</label>
+        <input type="text" class="form-control" id="res_low" required pattern="^[0-9]*$" [(ngModel)]="model.res_low" name="res_low"  #res_low="ngModel">
+        <div *ngIf="res_low.invalid && (res_low.dirty || res_low.touched)" class="alert alert-danger">
+          <div *ngIf="res_low.errors.required">Low resolution is required.</div>
+          <div *ngIf="res_low.errors.pattern">Please avoid letters.</div>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="res_high">High Resolution</label>
-        <input type="text" class="form-control" id="res_high" required [(ngModel)]="model.res_high" name="res_high">
+        <input type="text" class="form-control" id="res_high" required  pattern="^[0-9]*$" [(ngModel)]="model.res_high" name="res_high"  #res_high="ngModel">
+        <div *ngIf="res_high.invalid && (res_high.dirty || res_high.touched)" class="alert alert-danger">
+          <div *ngIf="res_high.errors.required">High resolution is required.</div>
+          <div *ngIf="res_high.errors.pattern">Please avoid letters.</div>
+        </div>
       </div>
-      
+
       <div class="form-group">
         <label for="timestamp">Timestamp</label>
-        <input type="text" class="form-control" id="timestamp" required [(ngModel)]="model.timestamp" name="timestamp">
+        <input type="text" class="form-control" id="timestamp" required [(ngModel)]="model.timestamp" name="timestamp" #timestamp="ngModel">
+        <div *ngIf="timestamp.invalid && (timestamp.dirty || timestamp.touched)" class="alert alert-danger">
+          <div *ngIf="timestamp.errors.required">Timestamp is required.</div>
+        </div>
       </div>
-      
+
       <div class="form-group">
         <label for="extension">Extension</label>
-        <select class="form-control" id="extension" required [(ngModel)]="model.extension" name="extension">
+        <select class="form-control" id="extension" required [(ngModel)]="model.extension" name="extension" #extension="ngModel">
              <option *ngFor="let extension of extensions" [value]="extension">{{extension}}</option>
-        </select>      
+        </select>
+        <div *ngIf="extension.invalid && (extension.dirty || extension.touched)" class="alert alert-danger">
+          <div *ngIf="extension.errors.required">Timestamp is required.</div>
+        </div>
       </div>
-          
+
       <div class="form-group">
         <label for="srid">SRID</label>
-         <select class="form-control" id="srid" required [(ngModel)]="model.srid" name="srid">
+         <select class="form-control" id="srid" required [(ngModel)]="model.srid" name="srid"  #srid="ngModel">
              <option *ngFor="let srid of srids" [value]="srid">{{srid}}</option>
-        </select>      
+        </select>
+        <div *ngIf="srid.invalid && (srid.dirty || srid.touched)" class="alert alert-danger">
+          <div *ngIf="srid.errors.required">SRID is required.</div>
+        </div>
+
       </div>
-        
+
       <div class="form-group">
         <label for="bbox_minx">Bounding Box</label>
-        <input type="text" class="form-control" id="bbox_minx" required [(ngModel)]="model.bbox_minx" name="bbox_minx">
-        <input type="text" class="form-control" id="bbox_miny" required [(ngModel)]="model.bbox_miny" name="bbox_miny">
-        <input type="text" class="form-control" id="bbox_maxx" required [(ngModel)]="model.bbox_maxx" name="bbox_maxx">
-        <input type="text" class="form-control" id="bbox_maxy" required [(ngModel)]="model.bbox_maxy" name="bbox_maxy">
-      </div>
+        <input type="text" class="form-control" id="bbox_minx" required pattern="^2[0-9]*$" [(ngModel)]="model.bbox_minx" name="bbox_minx" #bbox_minx="ngModel">
+        <div *ngIf="bbox_minx.invalid && (bbox_minx.dirty || bbox_minx.touched)" class="alert alert-danger">
+          <div *ngIf="bbox_minx.errors.required">Coordinate is required.</div>
+          <div *ngIf="bbox_minx.errors.pattern">This coordinate must be a number and start with 2.</div>
+        </div>
+        <input type="text" class="form-control" id="bbox_miny" required pattern="^1[0-9]*$" [(ngModel)]="model.bbox_miny" name="bbox_miny" #bbox_miny="ngModel">
+        <div *ngIf="bbox_miny.invalid && (bbox_miny.dirty || bbox_miny.touched)" class="alert alert-danger">
+          <div *ngIf="bbox_miny.errors.required">Coordinate is required.</div>
+          <div *ngIf="bbox_miny.errors.pattern">This coordinate must be a number and start with 1.</div>
+        </div>
+
+        <input type="text" class="form-control" id="bbox_maxx" required pattern="^2[0-9]*$" [(ngModel)]="model.bbox_maxx" name="bbox_maxx" #bbox_maxx="ngModel">
+        <div *ngIf="bbox_maxx.invalid && (bbox_maxx.dirty || bbox_maxx.touched)" class="alert alert-danger">
+          <div *ngIf="bbox_maxx.errors.required">Coordinate is required.</div>
+          <div *ngIf="bbox_maxx.errors.pattern">This coordinate must be a number and start with 2.</div>
+        </div>
+
+       <input type="text" class="form-control" id="bbox_maxy" required pattern="^1[0-9]*$" [(ngModel)]="model.bbox_maxy" name="bbox_maxy" #bbox_maxy="ngModel">
+       <div *ngIf="bbox_maxy.invalid && (bbox_maxy.dirty || bbox_maxy.touched)" class="alert alert-danger">
+          <div *ngIf="bbox_maxy.errors.required">Coordinate is required.</div>
+          <div *ngIf="bbox_maxy.errors.pattern">This coordinate must be a number and start with 1.</div>
+        </div>
+
+     </div>
 
       <!-- <iframe src="https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857.jpeg"></iframe> -->
       <div id="map" class="map"></div>
-      <input type="submit" class="btn btn-default" id="submit" value="Submit" /> 
+      <input type="submit" class="btn btn-success" id="submit" value="Submit" [disabled]="!jobForm.form.valid"/> 
+
     </form>
 </div>
 
