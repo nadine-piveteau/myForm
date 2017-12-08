@@ -23,7 +23,7 @@ export class JobFormComponent implements OnInit{
   model = new Job(undefined, 4000.0, 250.0, undefined, undefined, 2056,2420000.0, 1030000.0, 2900000.0, 1350000.0);
 
   submitted = false;
-  validRequest = false;
+  showMessage = false; 
 
   headers = new Headers();
 
@@ -35,6 +35,7 @@ export class JobFormComponent implements OnInit{
   }
 
   onSubmit() { 
+    this.showMessage = true;
     this.submitted = true; 
     this.dict['layer_id'] = this.model.layer_id; 
     this.dict['res_low'] = this.model.res_low; 
