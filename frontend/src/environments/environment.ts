@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  portBackend: 8000
+  portBackend: PORTBACKEND,
+  url: 'URL'
 };

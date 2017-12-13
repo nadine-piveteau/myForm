@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node ./replace.build.js ${PORTBACKEND} && ng serve -H 0.0.0.0 --port ${PORTFRONTEND}",
+    "start": "node ./replace.build.js ${PORTBACKEND} ${URL} ${PORTBACKEND_OLD} ${URL_OLD} && ng serve -H 0.0.0.0 --port ${PORTFRONTEND}",
     "updateBuild": "node ./replace.build.js",
     "build": "ng build",
     "test": "ng test",
