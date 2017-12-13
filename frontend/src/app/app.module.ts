@@ -12,7 +12,7 @@ import { JobFormComponent } from './job-form.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,

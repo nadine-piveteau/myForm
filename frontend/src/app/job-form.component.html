@@ -86,8 +86,12 @@
 
       <!-- <iframe src="https://wmts20.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857.jpeg"></iframe> -->
       <div id="map" class="map"></div>
-      <input type="submit" class="btn btn-success" id="submit" value="Submit" [disabled]="!jobForm.form.valid"/> 
-      <div *ngIf="showMessage" class="alert alert-success">TEST</div>
+      <input type="submit" class="btn btn-success" id="submit" value="Submit" [disabled]="!jobForm.form.valid"/>
+      <div *ngIf="showMessage" class="alert alert-success">
+        <div>Tiling job successfully sent!</div>
+        <div>{{progress}}%</div>
+        <progress value={{progress}} max="100"></progress>
+      </div>
     </form>
 </div>
 

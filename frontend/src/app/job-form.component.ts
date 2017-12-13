@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import { Job }    from './job';
 import { environment } from '../environments/environment';
+import {Observable} from 'rxjs/Rx';
+
 
 @Component({
   selector: 'job-form',
@@ -19,6 +21,8 @@ export class JobFormComponent implements OnInit{
   data: string;
   port = environment.portBackend;
   url = 'http://127.0.0.1:' + this.port + '/run_post';
+  progress_url = 'http://127.0.0.1:' + this.port + '/progress'; 
+  progress = 0;
   dict = {};
   model = new Job(undefined, 4000.0, 250.0, undefined, undefined, 2056,2420000.0, 1030000.0, 2900000.0, 1350000.0);
 
@@ -34,6 +38,13 @@ export class JobFormComponent implements OnInit{
     });
   }
 
+  getProgress() {
+    return this.http.get(this.progress_url).subscribe(
+      data=> {this.progress = +data;
+              console.log(+data/100);},
+      error=> {console.log(error);});
+}
+
   onSubmit() { 
     this.showMessage = true;
     this.submitted = true; 
@@ -46,19 +57,14 @@ export class JobFormComponent implements OnInit{
     this.dict['bbox'] = [this.model.bbox_minx, this.model.bbox_maxx, this.model.bbox_miny, this.model.bbox_maxy];
     console.log(this.dict); 
     this.data = JSON.stringify(this.dict);
-    if(this.model.layer_id != undefined){
-
-}
     this.headers.append('Content-Type', 'application/json');
     this.http.post(this.url, this.data, this.headers).subscribe(
-      data=> {console.log("The subscription is complete.")},
-      function(error) { console.log("Error happened" + error)}); 
-    console.log(this.data);   
-    
-  }
+      data=> {console.log("The subscription is complete.");
+              console.log(this.data);},
+      error=> { console.log("Error happened" + error)});
 
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
+    Observable.interval(2000).takeWhile(() => this.progress < 100).subscribe(() => this.getProgress())
+  }
 
   newJob() {
     this.model = new Job(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
