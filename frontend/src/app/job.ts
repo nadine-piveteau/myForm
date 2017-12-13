@@ -1,7 +1,7 @@
 export class Job {
 
   constructor(
-    public layer_id: string,
+    public layerid: string,
     public res_high: number,
     public res_low: number,
     public timestamp: string,
