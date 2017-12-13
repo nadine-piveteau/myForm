@@ -6,9 +6,11 @@ Form which aims to generate tiling jobs. These tiling jobs are used to prewarm W
 Define environment variables
 * Define in `rc_user` all environment variables.
 * `source rc_user`
+
 Launch frontend
 * `cd frontend/`
 * `npm start`
+
 Launch backend
 * `cd backend`
 * `python app.py ${PORTBACKEND}
