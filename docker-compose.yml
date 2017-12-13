@@ -1,35 +1,25 @@
-version: "3"
+version: "2"
 services:
   backend:
     # replace username/repo:tag with your name and image details
-    image: nadinepiveteau/form:backend
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+    image: nadinepiveteau/backend:latest
+    build: backend
+    env_file: dev.env
+    command:
+      - python
+      - app.py
+      - "8000"
     ports:
       - "8000:8000"
-    networks:
-      - webnet
-  frontend: 
+  frontend:
     # replace username/repo:tag with your name and image details
-    image: nadinepiveteau/form:frontend
-    deploy:
-      replicas: 1 
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+    image: nadinepiveteau/frontend:latest
+    build: frontend
+    env_file: dev.env
+    command:
+      - npm
+      - start
     ports:
       - "4200:4200"
-    networks:
-      - webnet
-
-networks:
-  webnet:
+    depends_on:
+      - backend

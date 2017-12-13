@@ -1,5 +1,1 @@
-export PORTBACKEND=8000
-export PORTBACKEND_OLD=PORTBACKEND
-export PORTFRONTEND=4200
-export URL='http://127.0.0.1:'
-export URL_OLD=URL
+export $(cat dev.env)

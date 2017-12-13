@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  portBackend: PORTBACKEND,
-  url: 'URL'
+  portBackend: 8000,
+  url: 'http://127.0.0.1:'
 };

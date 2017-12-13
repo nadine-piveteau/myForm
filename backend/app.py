@@ -4,9 +4,6 @@ import json
 from flask import Flask
 from flask import request
 from flask_cors import CORS
-from celery import Celery
-
-
 
 
 app = Flask(__name__)
@@ -21,7 +18,7 @@ def getForm():
     data = request.data.decode('utf-8')
     form_dict = json.loads(data)
     print ("Launch the tiling job for "+ form_dict.get("layer_id"))
-    print (form_dict) 
+    print (form_dict)
 
     return data
 
@@ -37,6 +34,5 @@ def getProgress():
 
 
 if __name__ == "__main__":
- 
-    port = sys.argv[1]
+    port = int(sys.argv[1])
     app.run(host='0.0.0.0', port=port)
